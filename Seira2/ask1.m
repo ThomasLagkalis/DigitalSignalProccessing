@@ -18,7 +18,7 @@ zplane(zeros, poles); title('z-plane with poles and zeros of H')
 
 % D subquestion
 
-W = [-pi: pi/128:pi]; %plot purposes (freqz)
+W = [-pi: pi/128:pi]; %plot purposes (freqz) number of points in frequency response
 figure(2);
 freqz(num, den, W); title('frequency response of H');
 
