@@ -1,0 +1,30 @@
+clear all; clc;
+N = 2;      %order
+samples = 256; %samples for plot
+wc = 2;     %cuttof angular frequency rad/sec 
+d_ripple = 3; %passband ripple in dB
+Ts = 0.2;   %sampling period
+fs = 1/Ts;  %sampling frequency
+fmax = fs/2;
+fc = wc/2*pi;%cutoff frequency hz
+fc_dig = fc/(fs/2); %normalize frequency 
+
+[num1 , den1] = cheby1(N, d_ripple, fc_dig/(2*pi), "high", "z"); %fc_dig*2*pi because we want rad/sec
+[hd, wd]=freqz(num1, den1, samples); %hd frequency response , wd angular frequency response
+
+w = [0:1/(samples-1):1]; %normalized
+figure();
+plot(w, mag2db(hd), "Color", "b");
+title("Frequency response in dB for 256 samples");
+ylabel("dB");
+xlabel("w normalized");
+
+
+
+
+hold on;
+plot(w, mag2db(hd2), "Color", "b");
+title("Frequency response in dB for 256 samples");
+ylabel("dB");
+xlabel("w normalized");
+
