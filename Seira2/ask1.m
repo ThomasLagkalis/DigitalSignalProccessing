@@ -4,7 +4,7 @@ clear all; clc;
 
 % B subquestion
 
-num = [0.2 0]; %coeffients of z in numerator (bigger >> smaller)
+num = [0 0.2 0]; %coeffients of z in numerator (bigger >> smaller)
 den = [1 -0.7 -0.18]; %coefficients of in denumerator
 Ts = 1/100; %sampling period
 
