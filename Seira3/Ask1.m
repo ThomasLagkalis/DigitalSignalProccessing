@@ -10,7 +10,7 @@ delta_s = 30;   % Attenuation
 [z, p, k] = buttap(N);
 [num1, den1] = zp2tf(z, p, k);
 [num2, den2] = lp2lp(num1, den1, Wc);
-n=2048;                             % samples    
+n=2048; % samples    
 f=0:fs/(n-1):fs/2;% frequency axis
 
 % analog filter frequency response 
@@ -19,13 +19,13 @@ fr_analog=freqs(num2,den2,2*pi*f);
 % digital filter frequency response
 fr_digital=freqz(NUMz,DENz, f, fs);
 
-figure(1);
+subplot(1, 2, 1);
 plot(f,mag2db(abs(fr_analog)),'--',f,mag2db(abs(fr_digital)));axis([0 5000 -300 10])
 
 legend('Analog filter', 'Digital filter');
 xlabel('Frequency (Hz)','FontSize',14);
 ylabel('Magnitude (dB)','FontSize',14);
-title('Butterworth Lowpass Filter','FontSize',15,'FontWeight','bold');
+title('Butterworth Lowpass Filter for attenuation = 30 db');
 
 
 % Repeat the process for attenuation 50dB.
@@ -44,13 +44,13 @@ fr_analog=freqs(num2,den2,2*pi*f);
 % digital filter frequency response
 fr_digital=freqz(NUMz,DENz, f, fs);
 
-figure(2);
+subplot(1, 2, 2)
 plot(f,mag2db(abs(fr_analog)),'--',f,mag2db(abs(fr_digital)));axis([0 5000 -300 10])
 
 legend('Analog filter', 'Digital filter');
 xlabel('Frequency (Hz)','FontSize',14);
 ylabel('Magnitude (dB)','FontSize',14);
-title('Butterworth Lowpass Filter','FontSize',15,'FontWeight','bold');
+title('Butterworth Lowpass Filter for attenuation = 50 db');
 
 
 
