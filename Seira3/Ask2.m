@@ -24,7 +24,7 @@ hold on;
 N2= 16;
 [num2 , den2] = cheby1(N2, d_ripple, fc_dig, "high", "z");
 [hd2, wd2]=freqz(num2, den2, samples);
-plot(w, mag2db(abs(hd2)), "Color", "r", "LineWidth", 1.2);
+plot(w, mag2db(abs(hd2)), "Color", "r", "LineWidth", 1.2);axis([0 1 -250 10])
 title("Frequency response in dB for 256 samples order 16");
 ylabel("dB");
 xlabel("radians per sample");
