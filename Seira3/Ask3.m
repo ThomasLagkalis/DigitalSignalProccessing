@@ -16,7 +16,7 @@ delta_s = 30;       % Attenuation
 [NUMz,DENz] = bilinear(num2,den2,fs);
 %%%%%%
 
-samples = linspace(0, 499, 500);                                      %works like discrete time domain
+samples = linspace(0, 499, 500);    %works like discrete time domain
 x1=1+cos(1000*samples*Ts)+cos(1600*samples*Ts)+cos(30000*samples*Ts); %signal x sampled
 figure();
 stem(samples, x1);
@@ -52,7 +52,7 @@ stem(samples, (x_filtered2-x_filtered).^2);
 title("Square difference between attenuation bands")
 
 %%% b subquestion %%%
-Ts = 0.2;           %sampling period
+Ts = 0.02;           %sampling period
 fs = 1/Ts;          %sampling frequency
 x2 = 1 + cos(1.5*samples*Ts) + cos(5*samples*Ts);
 
@@ -65,6 +65,7 @@ fc_dig = fc/(fs/2); %normalize frequency
 
 figure();
 stem(samples, x2);
+axis([0 250 min(x2)-0.7 max(x2)+0.7])
 xlabel("n")
 ylabel("x2(n)")
 title("Unfiltered x2 signal")
@@ -75,6 +76,7 @@ stem(samples, x2_filtered);
 xlabel("n")
 ylabel("x2_{filtered}(n)")
 title("Filtered x2 signal")
+axis([0 250 min(x2_filtered)-0.7 max(x2_filtered)+0.7])
 
 
 
