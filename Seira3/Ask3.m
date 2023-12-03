@@ -4,7 +4,7 @@ clear all; clc;
 %%% filter from Ask1.m %%%
 fs = 10000;
 N=500;
-f = [-fs/2:fs/N:fs/2-fs/N]; % For frequency respones
+f = [-fs/2:fs/N:fs/2-fs/N]; % For frequency response
 Ts = 1/fs;
 Wp = 2*pi*3000;     % Frequency passband rad/s
 Ws = 2*pi*4000;     % Frequency stopband rad/s
@@ -75,9 +75,11 @@ stem(samples, (x_filtered2-x_filtered).^2);
 title("Square difference between attenuation bands")
 
 %%% b subquestion %%%
-Ts = 0.02;           %sampling period
+N=500;
+Ts = 0.2;           %sampling period
 fs = 1/Ts;          %sampling frequency
 x2 = 1 + cos(1.5*samples*Ts) + cos(5*samples*Ts);
+f = [-fs/2:fs/N:fs/2-fs/N]; % For frequency response
 
 N2= 16;
 wc = 2;             %cuttof angular frequency rad/sec 
@@ -99,8 +101,6 @@ stem(f, fftshift(X2));
 xlabel("F")
 ylabel("X2(F)")
 title("Unfiltered x2 signal frequency domain")
-X2 = fft(x2);
-
 
 x2_filtered = filter(num2, den2, x2);
 figure(6);
