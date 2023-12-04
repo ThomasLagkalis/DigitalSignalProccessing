@@ -15,10 +15,10 @@ H_hann2 = fir1(N2-1, wc_norm, hann(N2));
 
 %frequency responses
 [h1,w1]=freqz(H_hamm,N1);
-[h2,w2]=freqz(H_hamm,N2);
+[h2,w2]=freqz(H_hamm2,N2);
 
 [hann1,wann1]=freqz(H_hann,N1);
-[hann2,wann2]=freqz(H_hann,N2);
+[hann2,wann2]=freqz(H_hann2,N2);
 
 figure;
 subplot(1,2,1);
