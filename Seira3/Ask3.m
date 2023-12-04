@@ -4,7 +4,7 @@ clear all; clc;
 %%% filter from Ask1.m %%%
 fs = 10000;
 N=500;
-f = [-fs/2:fs/N:fs/2-fs/N]; % For frequency respones
+f = [-fs/2:fs/N:fs/2-fs/N]; % For frequency response
 Ts = 1/fs;
 Wp = 2*pi*3000;     % Frequency passband rad/s
 Ws = 2*pi*4000;     % Frequency stopband rad/s
@@ -18,7 +18,7 @@ delta_s = 30;       % Attenuation
 [NUMz,DENz] = bilinear(num2,den2,fs);
 %%%%%%
 
-samples = linspace(0, 499, 500);                                      %works like discrete time domain
+samples = linspace(0, 499, 500);    %works like discrete time domain
 x1=1+cos(1000*samples*Ts)+cos(1600*samples*Ts)+cos(30000*samples*Ts); %signal x sampled
 figure(1);
 subplot(2, 1, 1)
@@ -75,11 +75,13 @@ stem(samples, (x_filtered2-x_filtered).^2);
 title("Square difference between attenuation bands")
 
 %%% b subquestion %%%
+N=500;
 Ts = 0.2;           %sampling period
 fs = 1/Ts;          %sampling frequency
 N = 500;
 f = [-fs/2:fs/N:fs/2-fs/N]; % For frequency respones
 x2 = 1 + cos(1.5*samples*Ts) + cos(5*samples*Ts);
+f = [-fs/2:fs/N:fs/2-fs/N]; % For frequency response
 
 N2= 16;
 wc = 2;             %cuttof angular frequency rad/sec 
@@ -91,6 +93,7 @@ fc_dig = fc/(fs/2); %normalize frequency
 figure(5);
 subplot(2, 1, 1)
 stem(samples, x2);
+axis([0 250 min(x2)-0.7 max(x2)+0.7])
 xlabel("n")
 ylabel("x2(n)")
 title("Unfiltered x2 signal time dοmain")
@@ -99,8 +102,12 @@ subplot(2, 1, 2)
 stem(f, fftshift(X2));
 xlabel("F")
 ylabel("X2(F)")
+<<<<<<< HEAD
 title("Unfiltered x2 signal frequency domain");
 
+=======
+title("Unfiltered x2 signal frequency domain")
+>>>>>>> b68047e1bda3f72709ecbb44a8378d97731a9eda
 
 x2_filtered = filter(num2, den2, x2);
 figure(6);
@@ -108,6 +115,10 @@ subplot(2, 1, 1)
 stem(samples, x2_filtered);
 xlabel("n")
 ylabel("x2_{filtered}(n)")
+title("Filtered x2 signal")
+axis([0 250 min(x2_filtered)-0.7 max(x2_filtered)+0.7])
+
+
 title("Filtered x2 signal time domain")
 X2_filtered = abs(fft(x2_filtered));
 subplot(2, 1, 2)
@@ -115,3 +126,4 @@ stem(f, fftshift(X2_filtered));
 xlabel("F")
 ylabel("x2_{filtered}(F)")
 title("Filtered x2 signal frequency domain")
+
