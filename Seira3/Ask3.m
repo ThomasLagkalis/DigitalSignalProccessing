@@ -77,6 +77,8 @@ title("Square difference between attenuation bands")
 %%% b subquestion %%%
 Ts = 0.2;           %sampling period
 fs = 1/Ts;          %sampling frequency
+N = 500;
+f = [-fs/2:fs/N:fs/2-fs/N]; % For frequency respones
 x2 = 1 + cos(1.5*samples*Ts) + cos(5*samples*Ts);
 
 N2= 16;
@@ -97,8 +99,7 @@ subplot(2, 1, 2)
 stem(f, fftshift(X2));
 xlabel("F")
 ylabel("X2(F)")
-title("Unfiltered x2 signal frequency domain")
-X2 = fft(x2);
+title("Unfiltered x2 signal frequency domain");
 
 
 x2_filtered = filter(num2, den2, x2);
