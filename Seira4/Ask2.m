@@ -44,3 +44,56 @@ xlabel('Frequency (rad/sec)');
 ylabel('Magnitude');
 title('Hanning: N=41');
 
+N=100;
+Fs=100;
+Ts=1/Fs;
+n = 1:N; %samples
+x = sin(15*n*Ts) + 0.25*sin(200*n*Ts); %sampling x singal
+f_axis=-Fs/2:Fs/N:Fs/2-Fs/N; % frequency axis
+Xf=fftshift(fft(x)); % Fourier transform
+
+%Just fft's of various filtered signals
+fil1=filter(H_hamm,1,x);                              
+XfFil1=fftshift(fft(fil1));
+fil2=filter(H_hamm2,1,x);
+XfFil2=fftshift(fft(fil2));
+fil3=filter(H_hann,1,x);                                 
+XfFil3=fftshift(fft(fil3));
+fil4=filter(H_hann2,1,x);                                
+XfFil4=fftshift(fft(fil4));
+
+figure;
+subplot(3,1,1);
+plot(f_axis,abs(Xf));
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+title('The Fourier transform of x=sin(15*t)+0.25*sin(200*t)');
+subplot(3,1,2);
+plot(f_axis,abs(XfFil1));
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+title('The filtered Fourier transform of x=sin(15*t)+0.25*sin(200*t) using Hamming window, N=21');
+subplot(3,1,3);
+plot(f_axis,abs(XfFil2));
+xlabel('Frequency(Hz)');
+ylabel('Values of function');
+title('The filtered Fourier transform of x=sin(15*t)+0.25*sin(200*t) using Hamming window, N=41');
+figure;
+subplot(3,1,1);
+plot(f_axis,abs(Xf));
+xlabel('Frequency(Hz)');
+ylabel('Values of function');
+title('The Fourier transform of x=sin(15*t)+0.25*sin(200*t)');
+subplot(3,1,2);
+plot(f_axis,abs(XfFil3));
+xlabel('Frequency(Hz)');
+ylabel('Values of function');
+title('The filtered Fourier transform of x=sin(15*t)+0.25*sin(200*t) using Hanning window, N=21');
+subplot(3,1,3);
+plot(f_axis,abs(XfFil4));
+xlabel('Frequency(Hz)');
+ylabel('Amplitude');
+title('The filtered Fourier transform of x=sin(15*t)+0.25*sin(200*t) using Hanning window, N=41');
+
+
+
