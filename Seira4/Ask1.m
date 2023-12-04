@@ -1,4 +1,4 @@
-clear all; clc;
+clc;
 
 wc = 0.4*pi; %cut-off frequency rad/sec
 fs = 200; %sampling frequency in Hz
@@ -7,10 +7,10 @@ fc=wc/(2*pi); %cut-off frequency in Hz
 wc_norm = fc/(fs/2); %cut-off frequency normalized
 N=21; %window length
 
-H_rect = fir1(20, wc_norm, rectwin(21)); %fir filter with rectangular window
-H_hamm = fir1(20, wc_norm, hamming(21)); %fir filter with hamming window
+H_rect = fir1(N-1, wc_norm, rectwin(N)); %fir filter with rectangular window
+H_hamm = fir1(N-1, wc_norm, hamming(N)); %fir filter with hamming window
 
-%transfer functions
+%frequency responses
 [h1,w1]=freqz(H_rect,N);
 [h2,w2]=freqz(H_hamm,N);
 
